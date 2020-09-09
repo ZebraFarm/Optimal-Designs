@@ -2,6 +2,7 @@
 
 print("Initializing Libraries ...")
 
+import timeit
 import math
 import numpy as np
 import cvxpy as cp 
@@ -48,13 +49,18 @@ def main():
     const = [0 <= W, cp.sum(W) == 1]
 
     # Creating Problem & Solving
+    start = timeit.default_timer()
+
     prob = cp.Problem(obj, const)
     prob.solve()
+    
+    stop = timeit.default_timer()
 
-    print("\nW = ", W.value)
-    print("Sum of W = ",sum(W.value))
+    #print("\nW = ", W.value)
+    #print("Sum of W = ",sum(W.value))
 
-
+    print("Method used: ", prob.solver_stats.solver_name)
+    print('Time to Compute: ', stop - start) 
 
 if __name__ == '__main__':
     print("Starting... \n")
