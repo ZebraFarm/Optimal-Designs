@@ -35,7 +35,7 @@ def main():
 
     # Initializing Variables, Objective, and Constraints
     W = cp.Variable(N)
-    obj = cp.Minimize(- cp.log_det( cp.sum( [W[i] * A[i] for i in range(N)]) ) )
+    obj = cp.Minimize( cp.matrix_frac(np.identity(p+1), sum( [W[i] * A[i] for i in range(N)]) ) )
     const = [0 <= W, cp.sum(W) == 1]
 
     # Creating Problem & Solving
@@ -47,10 +47,10 @@ def main():
     stop = timeit.default_timer()
 
     print('Index\tValue')
-        eps = 0.0001
-        for i in range(N):
-            if W.value[i] > eps:
-                print(f"{i}\t{W[i].value}")
+    eps = 0.0001
+    for i in range(N):
+        if W.value[i] > eps:
+            print(f"{i}\t{W[i].value}")
 
     print("Sum of W = ",sum(W.value))
 
