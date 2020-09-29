@@ -1,5 +1,7 @@
 #!/usr/bin/python3.8
 
+import sys
+import timeit
 import designs as des
 import cvxpy as cp 
 import numpy as np
@@ -7,45 +9,83 @@ import matplotlib.pyplot as plt
 
 def main():
 
-	
+	#a, b = sys.argv[1:2]
+	a = -1;b = 1
+	n = 21
+	p = 2
 
-	n = 21; p = 2; a = -1; b = 1
-
-	N = [x for x in range(11,212,50)]
+	N = [x for x in range(11,1002,100)]
+	for i in range(2001,20002,1000):
+		N.append(i)
+	print(N)
 	P = [2,3,5,10]
 
-	N=[21];P=[2]
+	time_a = [[] for i in range(len(P))]
+	time_d = [[] for i in range(len(P))]
+	time_e = [[] for i in range(len(P))]
 
-	time_a = np.empty((len(P),len(N)))
-	time_d = np.empty((len(P),len(N)))
-	time_e = np.empty((len(P),len(N)))
+	for n in N:
+		print(n)
+		for i in range(len(P)):
+			
+			A = model(n,P[i],a,b)
 
-	for i in range(len(P)):
-		for j in range(len(N)):
+			start = timeit.default_timer()
+			des.a_optimal(A,n)
+			stop = timeit.default_timer()
+			time_a[i].append(stop - start)
 
-			A = model(N[j],P[i],a,b)
+			start = timeit.default_timer()
+			des.d_optimal(A,n)
+			stop = timeit.default_timer()
+			time_d[i].append(stop - start)
 
-			time_a[i][j] = des.a_optimal(A,n).solver_stats.solve_time
-			time_d[i][j] = des.d_optimal(A,n).solver_stats.solve_time
-			time_e[i][j] = des.e_optimal(A,n).solver_stats.solve_time
+			start = timeit.default_timer()
+			des.e_optimal(A,n)
+			stop = timeit.default_timer()
+			time_e[i].append(stop - start)
 
+	#Header
+	print('A-Optimal')
+	print('N', end = '\t')
+	for p in P:
+		print(p, end = '\t')
+	print()	
 
+	#Outputs
+	for i in range(len(N)):
+		print(N[i], end = '\t')
+		for j in range(len(P)):
+			print(time_a[j][i], end = '\t')
+		print()
 
-	fig, ax = plt.subplots()
-	ax.plot(N,time_a[0])#,N,time_a[1],N,time_a[2],N,time_a[3])
-	ax.set_xlim(0,max(N))
-	ax.set_ylim(0,max(time_a[0]))
-	ax.set_xlabel('Number of Variables')
-	ax.set_ylabel('Time (s)')
-	ax.legend(loc='best')
-	ax.grid(True)
+	#Header
+	print('D-Optimal')
+	print('N', end = '\t')
+	for p in P:
+		print(p, end = '\t')
+	print()	
 
-	plt.show()
+	#Outputs
+	for i in range(len(N)):
+		print(N[i], end = '\t')
+		for j in range(len(P)):
+			print(time_d[j][i], end = '\t')
+		print()
 
+	#Header
+	print('E-Optimal')
+	print('N', end = '\t')
+	for p in P:
+		print(p, end = '\t')
+	print()	
 
-
-
-
+	#Outputs
+	for i in range(len(N)):
+		print(N[i], end = '\t')
+		for j in range(len(P)):
+			print(time_e[j][i], end = '\t')
+		print()
 
 def model(N,p,a,b):
 	A = []
