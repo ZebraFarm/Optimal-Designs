@@ -3,15 +3,16 @@
 library(CVXR)
 
 N = 21
+a = -1
+b = 1
+p = 2
+P = 0:p
+
+u_i <- function(i,a,b)
+  a + (b-a) * (i-1) / (N-1)
 
 A = list(N)
-for (i in 1:N){
-  u_i = -1 + 2 * (i-1) / (N-1)
-  tmp =  c(1, u_i, u_i^2)
-  A_i = tmp %*% t(tmp)
-  
-  A[[i]] = A_i
-}
+A = lapply(1:N, function(i) A[[i]] = u_i(i,a,b)^P %*% t(u_i(i,a,b)^P))
 
 # Initializing Variables, Objective, and Constraints
 W = Variable(N)
