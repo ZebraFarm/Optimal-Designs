@@ -1,3 +1,5 @@
 ./*/plots.R
 ./*/.RData
+*/.RData
 ./*/.Rhistory
+*/.Rhistory
