@@ -16,6 +16,20 @@ def a_optimal(A,N):
 
 	return prob
 
+# def a_optimal(A,N):
+
+#     # Initializing Variables, Objective, and Constraints
+# 	p = A[1].shape[0] - 1
+# 	W = cp.Variable(N)
+# 	obj = cp.Minimize( cp.matrix_frac( NON-IDENTITY, cp.sum( [W[i] * A[i] for i in range(N)]) ) )
+# 	const = [0 <= W, cp.sum(W) == 1]
+
+#     # Creating Problem & Solving
+# 	prob = cp.Problem(obj, const)
+# 	prob.solve()
+
+# 	return prob
+
 def d_optimal(A,N):
 
 

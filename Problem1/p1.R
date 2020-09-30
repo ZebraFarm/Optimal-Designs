@@ -13,24 +13,9 @@ for (i in 1:N){
   A[[i]] = A_i
 }
 
-fun <- function(W,A){
-  N = length(W)
-  p = nrow(A[[1]])
-  
-  scaled = lapply(1:N, function(x) W[x] * A[[x]])
-  
-  sum = matrix(0,nrow = p, ncol = p)
-  for(i in 1:N) 
-    sum = sum + scaled[[i]]
-  
-  #d_sum = det(sum)
-  #ans = log(d_sum)
-  return(ans)
-}
-
 # Initializing Variables, Objective, and Constraints
 W = Variable(N)
-obj = Minimize(- log_det(fun(W, A)) )
+obj = Minimize(- log_det(Reduce('+', lapply(1:N, function(x) W[x] * A[[x]]) ) ) )
 const = list(W >= 0, sum(W) == 1)
 
 # Creating Problem & Solving
