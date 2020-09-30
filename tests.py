@@ -10,15 +10,14 @@ import matplotlib.pyplot as plt
 def main():
 
 	#a, b = sys.argv[1:2]
-	a = -1;b = 1
-	n = 21
-	p = 2
-
-	N = [x for x in range(11,1002,100)]
-	for i in range(2001,20002,1000):
+	#(0,1)(0,5)
+	a = 0;b = 5
+	print('a:',a," b:",b)
+	N = [x for x in range(11,1002,200)]
+	for i in range(2001,10002,2000):
 		N.append(i)
 	print(N)
-	P = [2,3,5,10]
+	P = [2,3,4,5,6]
 
 	time_a = [[] for i in range(len(P))]
 	time_d = [[] for i in range(len(P))]
