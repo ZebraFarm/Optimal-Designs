@@ -1,5 +1,3 @@
-#Not working at this time, troubles with "log_det"
-
 library(CVXR)
 
 N = 21

@@ -10,18 +10,21 @@ import cvxpy as cp
 def main():
     
     print("What is N ... ", end = '')
-    N = int(input())        
+    N = 1001#int(input())        
 
     print("\nWhat is a ... ", end = '')
-    a = int(input())        
+    a = -1#int(input())        
 
     print("\nWhat is b ... ", end = '')
-    b = int(input())        
+    b = 1#int(input())        
 
     print("\nWhat is p ... ", end = '')
-    p = int(input())        
+    p = 3#int(input())        
 
     print('\n( N, a, b, p) = (',N,',',a,',',b,',',p,')')
+
+    c_1 = np.array([[1],[1],[1],[1]])
+    c_2 = np.array([[1],[-1],[1],[-1]])
 
     #Generate A
     A = []
@@ -35,7 +38,7 @@ def main():
 
     # Initializing Variables, Objective, and Constraints
     W = cp.Variable(N)
-    obj = cp.Minimize( cp.matrix_frac(np.identity(p+1), sum( [W[i] * A[i] for i in range(N)]) ) )
+    obj = cp.Minimize( cp.matrix_frac( c_1 , sum( [W[i] * A[i] for i in range(N)]) ) + cp.matrix_frac( c_2 , sum( [W[i] * A[i] for i in range(N)]) ) )
     const = [0 <= W, cp.sum(W) == 1]
 
     # Creating Problem & Solving
