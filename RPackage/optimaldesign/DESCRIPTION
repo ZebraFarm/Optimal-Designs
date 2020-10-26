@@ -1,11 +1,12 @@
 Package: optimaldesign
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Effeciently Computes Optimal Designs
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Cole Sibbald
+Maintainer: Cole Sibbald <csibbald1@uvic.ca>
+Description: This package effeciently copmutes potential support points to further implement statistically optimal designs based on some specified criterion.
+    Computed A, C, D, E optimal designs, using the CVXR package.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
