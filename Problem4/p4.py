@@ -10,22 +10,22 @@ import cvxpy as cp
 def main():
     
     print("What is N ... ", end = '')
-    N = 1001#int(input())        
+    N = int(input())        
 
     print("\nWhat is a ... ", end = '')
-    a = -1#int(input())        
+    a = int(input())        
 
     print("\nWhat is b ... ", end = '')
-    b = 1#int(input())        
+    b = int(input())        
 
     print("\nWhat is p ... ", end = '')
-    p = 3#int(input())        
+    p = int(input())        
 
     print('\n( N, a, b, p) = (',N,',',a,',',b,',',p,')')
 
-    c_1 = np.array([[1],[1],[1],[1]])
-    c_2 = np.array([[1],[-1],[1],[-1]])
-
+    c1 = np.array([[1],[1],[1],[1]])
+    c2 = np.array([[1],[-1],[1],[-1]])
+    C = [c1,c2]
     #Generate A
     A = []
     for i in range(1,N+1):
@@ -38,7 +38,7 @@ def main():
 
     # Initializing Variables, Objective, and Constraints
     W = cp.Variable(N)
-    obj = cp.Minimize( cp.matrix_frac( c_1 , sum( [W[i] * A[i] for i in range(N)]) ) + cp.matrix_frac( c_2 , sum( [W[i] * A[i] for i in range(N)]) ) )
+    obj = cp.Minimize( cp.sum([cp.matrix_frac( c , sum( [W[i] * A[i] for i in range(N)]) ) for c in C ] ) )
     const = [0 <= W, cp.sum(W) == 1]
 
     # Creating Problem & Solving

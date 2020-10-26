@@ -46,6 +46,31 @@ ggplot(data_E,aes(N)) +
   labs(x = "Number of Variables", y = "Compute Time (s)", title = "E-Optimal (a = -1, b = 1)") + 
   theme(legend.position = c(0.2,0.8)) + 
   scale_color_manual("", values = c("P=2" = "green", "P=3" = "yellow", "P=4" = "Orange", "P=5" = "red", "P=6" = "violet"))
+
+```
+
+
+```{r,include=FALSE}
+data_A <- read.table(file="A-optimal-output.txt",header=T)
+data_D <- read.table(file="D-optimal-output.txt",header=T)
+
+png('A-Optimal-Convergance.png')
+ggplot(data_A,aes(N)) +
+  geom_line(aes(y=U_i,colour="U_i")) +
+  geom_abline(intercept = 0.4575800000000001,slope=0, aes(colour="Asymptote")) +
+  labs(x = "Number of Variables", y = "U_i", title = "A-Optimal (a = -1, b = 1)") + 
+  ylim(c(0.38,.47)) +
+  scale_color_manual("", values = c("U_i" = "green", "Asymptote" = "blue"))
+dev.off()
+
+png('D-Optimal-Convergance.png')
+ggplot(data_D,aes(N)) +
+  geom_line(aes(y=U_i,colour="U_i")) +
+  geom_abline(intercept = 0.45248,slope=0, aes(colour="Asymptote")) +
+  ylim(c(0.38,.47)) +
+  labs(x = "Number of Variables", y = "U_i", title = "D-Optimal (a = -1, b = 1)") + 
+  scale_color_manual("", values = c("U_i" = "green", "Asymptote" = "blue"))
+dev.off()
 ```
 
 ```{r,include=FALSE}

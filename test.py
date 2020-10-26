@@ -13,20 +13,20 @@ def main():
 	N = [x for x in range(11,1002,200)]
 	for i in range(1001,21002,2000):
 		N.append(i)
-	N.append(100000)
+	N.append(100001)
 	print(N)
 	p = 3
-	eps = 0.01
+	eps = 0.0075
 
 	#Header
-	print('A-Optimal')
+	print('D-Optimal')
 	print('N\tU_i\tValue')
 
 	for n in N:
 		A = model(n,p,a,b)
 
 		W = cp.Variable(n)
-		obj = cp.Minimize( cp.matrix_frac( np.identity(p+1), cp.sum( [W[i] * A[i] for i in range(n)]) ) )
+		obj = cp.Minimize(- cp.log_det( cp.sum( [W[i] * A[i] for i in range(n)]) ) )
 		const = [0 <= W, cp.sum(W) == 1]
 
 	    # Creating Problem & Solving

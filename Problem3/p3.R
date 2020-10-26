@@ -1,6 +1,6 @@
 library(CVXR)
 
-N = 101
+N = 21
 a = -1
 b = 1
 p = 3
