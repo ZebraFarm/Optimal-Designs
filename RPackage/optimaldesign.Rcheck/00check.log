@@ -1,0 +1,16 @@
+* using log directory ‘/home/cole/Documents/Work/UVic/Convex Optimal Designs/RPackage/optimaldesign.Rcheck’
+* using R version 4.0.3 (2020-10-10)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* using session charset: UTF-8
+* using options ‘--no-manual --as-cran’
+* checking for file ‘optimaldesign/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘optimaldesign’ version ‘0.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... ERROR
+Invalid NAMESPACE file, parsing gives:
+Error in asChar(e[-1L]): empty name in directive 'import' in 'NAMESPACE' file
+
+See section ‘Package namespaces’ in the ‘Writing R Extensions’ manual.
+* DONE
+Status: 1 ERROR
