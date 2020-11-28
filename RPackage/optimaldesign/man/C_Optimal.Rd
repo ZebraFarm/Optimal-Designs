@@ -9,7 +9,7 @@ C_Optimal(N, A, c)
 \arguments{
 \item{N}{the number of feasible points}
 
-\item{A}{a list of the design models, computed from the Polynomial Order, computed at each Feasible Point}
+\item{A}{a list of N matrices from the regression model computed from the Polynomial Order, computed at each Feasible Point}
 
 \item{c}{the scaling value, can be a vector or matrix}
 }
@@ -18,5 +18,5 @@ returns the CVXR solution to the optimization problem
 C_Optimal(N,A,c)
 }
 \description{
-Computes an c-optimal Design using simplex constraints
+Computes an c-optimal Design
 }

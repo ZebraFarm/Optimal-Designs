@@ -13,33 +13,36 @@ optimalDesigns(
   FeasiblePoints = NA,
   A = NA,
   c = NA,
+  epsilon = 1e-04,
   ...
 )
 }
 \arguments{
-\item{N}{the number of feasible points}
+\item{N}{the number of feasible points, (a positive integer).  It can be slow if N is larger than 500.}
 
-\item{a}{the lower bound (numeric)}
+\item{a}{the lower bound (numeric) of the design space}
 
-\item{b}{the upper bound (numeric, where b > a)}
+\item{b}{the upper bound (numeric, where b > a) of the design space}
 
-\item{PolyOrder}{the order of the design space}
+\item{PolyOrder}{the order of the polynomial regression model (a positive integer)}
 
-\item{Method}{the type of optimal design to be used ('A','C','D','E')}
+\item{Method}{the optimality criterion of optimal design to be used ('A','C','D','E')}
 
 \item{FeasiblePoints}{the points whose weights will be optimized, can be in the form of a vector of size N, or as a function for points 1 to N}
 
-\item{A}{a list of the design models, computed from the Polynomial Order, computed at each Feasible Point}
+\item{A}{a list of matrices, computed from the Polynomial Order, computed at each Feasible Point}
 
-\item{c}{a scaling parameter to the model}
+\item{c}{a constant vector/matrix used in the c-optimality criterion}
+
+\item{epsilon}{the smallest value of the feasible point returned.}
 }
 \value{
 returns the CVXR solution to the optimization problem
 }
 \description{
-Computes an Optimal Design by minimizing the design with simplex constraints
+Computes an Optimal Design by minimizing a convex objective function with simplex constraints.  Polynomial regression models with one independent variable are considered, and the design space is an interval.
 }
 \examples{
-optimalDesigns(N = 21, a = -1, b = 1,PolyOrder = 3, Method = "D")[[1]]
-This will return the 21 interior point optimal weights according to a D-Optimal Design
+optimalDesigns(N = 21, a = -1, b = 1,PolyOrder = 3, Method = "D")
+This will return the D-Optimal Design.
 }

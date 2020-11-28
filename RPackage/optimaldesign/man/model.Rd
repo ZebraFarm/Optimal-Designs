@@ -2,28 +2,28 @@
 % Please edit documentation in R/model.R
 \name{model}
 \alias{model}
-\title{Computes the design model}
+\title{Computes the list of matrices A}
 \usage{
 model(N, a, b, PolyOrder, FeasiblePoints)
 }
 \arguments{
 \item{N}{the number of feasible points}
 
-\item{a}{the lower bound}
+\item{a}{the lower bound of the design space}
 
-\item{b}{the upper bound}
+\item{b}{the upper bound of the design space}
 
-\item{PolyOrder}{the order of the design space}
+\item{PolyOrder}{the order of the polynomial regression model}
 
-\item{Method}{the type of optimal design to be used}
+\item{Method}{the optimality criterion of the optimal design}
 
-\item{FeasablePoints}{the points whose weights will be optimized}
+\item{FeasablePoints}{the points whose weights will be optimized. The length of the FeasablePoints should be N.}
 }
 \value{
-returns A the design model
+returns A for the model
 }
 \description{
-Computes the design model
+Computes the list of matrices A
 }
 \examples{
 model(N = 21, a = -1, b = 1, PolyOrder = 3, FeasiblePoints = function(i,a = -1,b = 1) a + (b-a) * (i-1) / (N-1))

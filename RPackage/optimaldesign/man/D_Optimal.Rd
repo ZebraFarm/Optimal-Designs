@@ -9,12 +9,12 @@ D_Optimal(N, A)
 \arguments{
 \item{N}{the number of feasible points}
 
-\item{A}{a list of the design models, computed from the Polynomial Order, computed at each Feasible Point}
+\item{A}{a list of N matrices from the regression model computed from the Polynomial Order, computed at each Feasible Point}
 }
 \value{
 returns the CVXR solution to the optimization problem
 D_Optimal(N,A)
 }
 \description{
-Computes a D-optimal Design using simplex constraints
+Computes a D-optimal Design
 }
