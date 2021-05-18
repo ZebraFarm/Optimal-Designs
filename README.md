@@ -3,6 +3,7 @@
 This following repository contains a collection of implemented algorithms that utilize the CVX package for convex optimization. These optimization methods are then applied to a variety of (D- ,A-, C-, I- ) Optimal Designs.
 
 ##Problem
+
 To build and explore how CVX works to solve designs in both Python and R, potentially discovering ways to improve time to compute.
 
 
